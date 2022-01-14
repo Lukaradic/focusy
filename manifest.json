@@ -1,0 +1,13 @@
+{
+    "name": "Focusy",
+    "version": "1.0.0",
+    "description" : "Prodictivity extension to help you stay focused on whats important",
+    "manifest_version" : 3,
+    "background": {
+        "service_worker": "index.js"
+    },
+    "permissions": ["storage"],
+    "action": {
+        "default_popup": "index.html"
+    }
+}
