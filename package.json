@@ -1,0 +1,23 @@
+{
+  "name": "focusy",
+  "version": "1.0.0",
+  "description": "Focusy is a chrome extension used to improve user productivity. Features like blocking certain urls, and pomodoro timer are it's key features.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lukaradic/focusy.git"
+  },
+  "author": "Luka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lukaradic/focusy/issues"
+  },
+  "homepage": "https://github.com/Lukaradic/focusy#readme",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
+}
