@@ -1,7 +1,19 @@
+body {
+    min-width: 250px;
+}
+
 .btn {
     display: block;
     border: none;
     background-color: transparent;
+}
+
+
+.form__button  {
+    padding: 5px 15px;
+    border: 1px solid #333;
+    text-align: center;
+    cursor: pointer;
 }
 
 .list {
@@ -33,3 +45,20 @@
     background-color: #333;
 } */
 
+
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
+.footer__btn--enable,
+.footer__btn--disable {
+    padding: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border: 1px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+}

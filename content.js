@@ -1,31 +1,34 @@
-const body = document.querySelector('body');
+const body = document.querySelector('body')
+// const toBlock = chrome.storage.sync.get
 
 // body.innerHTML = "<h1 class="main-text"> Site has been blocked, stay focused on your task </h1>";
 
-
 function getUrlData() {
     return new Promise((resolve, reject) => {
-      chrome.storage.sync.get(null, (items) => {
-        if (chrome.runtime.lastError) {
-          return reject(chrome.runtime.lastError);
-        }
-        resolve(items);
-      });
-    });
-  }
+        chrome.storage.sync.get('list', (items) => {
+            if (chrome.runtime.lastError) {
+                return reject(chrome.runtime.lastError)
+            }
+            resolve(items)
+        })
+    })
+}
 
 async function checkBlockedUrl() {
-    let blockedUrlArr;
-    blockedUrlArr = await getUrlData();
-    let currentUrl = window.location.href;
-    console.log(currentUrl, blockedUrlArr);
-    for(let url in blockedUrlArr) {
-        if(currentUrl.includes(blockedUrlArr[url].value)) {
-            body.innerHTML = "";
+    let blockedUrlArr
+    blockedUrlArr = await getUrlData().then((items) => items.list)
+    let currentUrl = window.location.href
+
+    blockedUrlArr.forEach((item) => {
+        if (currentUrl.includes(item.value)) {
+            body.innerHTML = ''
             console.log('blocked site')
-            return;
+            return
         }
-    }
-};
+    })
+}
 
 checkBlockedUrl();
+//  on storage change check if url is added
+// chrome.storage.onChanged.addListener(checkBlockedUrl)
+
