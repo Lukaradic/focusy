@@ -1,0 +1,35 @@
+.btn {
+    display: block;
+    border: none;
+    background-color: transparent;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    list-style: none;
+    gap: 10px;
+}
+
+.list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+    background-color: #eee;
+    cursor: pointer;
+}
+.list__btn {
+    padding: 10px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+.list__btn:hover {
+    background-color: orangered;
+}
+/* .list__item:hover {
+    background-color: #333;
+} */
+
