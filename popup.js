@@ -1,8 +1,13 @@
 const input = document.getElementById('url-input')
+
+const urlList = document.getElementById('url__list')
+
 const submitBtn = document.getElementById('form__submit')
 const clearListBtn = document.getElementById('clear__list')
 const currentUrlBtn = document.getElementById('current__submit')
-const urlList = document.getElementById('url__list')
+const disableBtn = document.getElementById('btn__disable');
+const enableBtn = document.getElementById('btn__enable');
+
 
 function guidGenerator() {
     var S4 = function () {
@@ -66,15 +71,14 @@ async function setToStorage(string) {
 function removeFromStorage(id) {
     chrome.storage.sync.get(function (items) {
         items['list'] = items['list'].filter((url) => url.id !== id)
-        console.log(items['list'])
         chrome.storage.sync.set(items)
     })
 }
 
-function setCurrentUrlToInput() {
+function setCurrentUrlToInput(e) {
+    e.preventDefault();
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         const activeTab = tabs[0]
-        console.log(activeTab)
         if (input) {
             input.value = activeTab.url
         }
@@ -88,14 +92,13 @@ function submitBtnFunction(e) {
     input.value = ''
 }
 
-submitBtn.addEventListener('click', submitBtnFunction)
-clearListBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    chrome.storage.sync.clear()
-})
-currentUrlBtn.addEventListener('click', setCurrentUrlToInput)
+function enableAllUrls() {
+    chrome.storage.sync.set({'disable' : false})
+}
 
-//  render list items out of all urls
+function disableAllUrls() {
+    chrome.storage.sync.set({'disable' : true})
+}
 
 function getUrlData() {
     return new Promise((resolve, reject) => {
@@ -116,5 +119,16 @@ function createElement(element = 'div', text = '', classes, id) {
     return node
 }
 
-renderUrlListData();
+
+submitBtn?.addEventListener('click', submitBtnFunction)
+clearListBtn?.addEventListener('click', (e) => {
+    e.preventDefault()
+    chrome.storage.sync.clear()
+})
+currentUrlBtn?.addEventListener('click', setCurrentUrlToInput)
+disableBtn?.addEventListener('click', disableAllUrls);
+enableBtn?.addEventListener('click', enableAllUrls);
+
+
 chrome.storage.onChanged.addListener(renderUrlListData)
+renderUrlListData();

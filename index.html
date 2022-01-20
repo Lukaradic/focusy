@@ -8,21 +8,22 @@
             <h1>Welcome to focusy</h1>
             <form class="form">
                 <label for="url-input" class="form__label">
-                    <input id="url-input" class="form__input" type="text" />
-                    Add url
+                    <input id="url-input" class="form__input" type="text" placeholder="add url to block" />
                 </label>
-                <button id="form__submit" class="form__button btn">
-                    Submit
-                </button>
+                <div class="form__footer">
+                    <button id="current__submit" class="current__btn btn">
+                        Current Url
+                    </button>
+                    <button id="form__submit" class="form__button btn">
+                        Submit
+                    </button>
+                </div>
             </form>
         </main>
 
         <main id="url__list-wrapper">
             <ul id="url__list" class="list"></ul>
         </main>
-        <button id="current__submit" class="form__button btn">
-            Current Url
-        </button>
 
         <footer>
             <button id="btn__disable" class="btn footer__btn--disable">
